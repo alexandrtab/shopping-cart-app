@@ -16,6 +16,7 @@ export const ProductItemStyle = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	width: 300px;
+	height: 490px;
 	background-color: ${(props) => (props.primary ? "white" : "#919aa1")};
 	margin: 2rem;
 	padding: 1rem;

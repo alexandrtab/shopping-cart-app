@@ -3,6 +3,7 @@ import { ProductItem } from "../../components/products/ProductItem";
 import { ProductContainerStyle } from "../../styles/ProductScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productActions";
+import Fade from "react-reveal/Fade";
 
 export const ProductScreen = () => {
 	const dispatch = useDispatch();
@@ -24,7 +25,9 @@ export const ProductScreen = () => {
 					<h1>Products</h1>
 					<ProductContainerStyle primary>
 						{products.map((item) => (
-							<ProductItem item={item} />
+							<Fade bottom>
+								<ProductItem item={item} />
+							</Fade>
 						))}
 					</ProductContainerStyle>
 				</>

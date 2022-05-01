@@ -1,5 +1,6 @@
 import { CartContainerStyle } from "../../styles/CartScreen";
 import { CartItem } from "../../components/cart/CartItem";
+import Bounce from "react-reveal/Fade";
 
 export const CartScreen = () => {
 	const cartItems = [
@@ -14,11 +15,13 @@ export const CartScreen = () => {
 	return (
 		<div>
 			<h1>Cart</h1>
-			<CartContainerStyle>
-				{cartItems.map((item) => (
-					<CartItem item={item} key={item.id} />
-				))}
-			</CartContainerStyle>
+			<Bounce left>
+				<CartContainerStyle>
+					{cartItems.map((item) => (
+						<CartItem item={item} key={item.id} />
+					))}
+				</CartContainerStyle>
+			</Bounce>
 		</div>
 	);
 };
