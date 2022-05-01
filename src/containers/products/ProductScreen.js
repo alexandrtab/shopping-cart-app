@@ -6,8 +6,8 @@ export const ProductScreen = () => {
 		<div>
 			<h1>Products</h1>
 			<ProductContainerStyle primary>
-				{products.map((item) => (
-					<ProductItem item={item} />
+				{products.map((item, index) => (
+					<ProductItem key={index} item={item} />
 				))}
 			</ProductContainerStyle>
 		</div>
