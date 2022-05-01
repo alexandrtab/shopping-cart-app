@@ -14,13 +14,21 @@ export const ProductScreen = () => {
 	}, [dispatch]);
 
 	return (
-		<div>
-			<h1>Products</h1>
-			<ProductContainerStyle primary>
-				{products.map((item, index) => (
-					<ProductItem key={index} item={item} />
-				))}
-			</ProductContainerStyle>
-		</div>
+		<>
+			{loading ? (
+				<h1>Loading...</h1>
+			) : error ? (
+				<div>{error}</div>
+			) : (
+				<>
+					<h1>Products</h1>
+					<ProductContainerStyle primary>
+						{products.map((item) => (
+							<ProductItem item={item} />
+						))}
+					</ProductContainerStyle>
+				</>
+			)}
+		</>
 	);
 };
