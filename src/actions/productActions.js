@@ -5,7 +5,7 @@ import {
 } from "../constants/productConstants";
 import { products } from "../constants/products";
 
-export const listProducts = async (dispatch) => {
+export const listProducts = () => (dispatch) => {
 	const productsData = [];
 	try {
 		dispatch({

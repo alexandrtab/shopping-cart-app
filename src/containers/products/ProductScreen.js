@@ -7,12 +7,11 @@ import { listProducts } from "../../actions/productActions";
 
 export const ProductScreen = () => {
 	const dispatch = useDispatch();
-	const productList = useSelector((state) => state.productList);
-	const { loading, error, products } = productList;
-
+	const productsList = useSelector((state) => state.productsList);
+	const { loading, error, products } = productsList;
 	useEffect(() => {
 		dispatch(listProducts());
-		console.log(productList);
+		console.log(productsList);
 	}, [dispatch]);
 
 	return (
