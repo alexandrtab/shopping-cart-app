@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { ProductItem } from "../../components/products/ProductItem";
-import { products } from "../../constants/products";
 import { ProductContainerStyle } from "../../styles/ProductScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productActions";
