@@ -1,4 +1,4 @@
-import { intializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -9,7 +9,7 @@ const firebaseConfig = {
 	messagingSenderId: "706851865502",
 	appId: "1:706851865502:web:6bde4527cf69ba40724c8f",
 };
-const app = intializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 export default db;
