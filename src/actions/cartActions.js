@@ -1,7 +1,4 @@
 import {
-	CART_LIST_REQUEST,
-	CART_LIST_SUCCESS,
-	CART_LIST_FAIL,
 	CART_ITEM_ADD_FAIL,
 	CART_ITEM_ADD_REQUEST,
 	CART_ITEM_ADD_SUCCESS,
@@ -79,7 +76,7 @@ export const addProductToCart = (new_cart_item) => async (dispatch) => {
 
 			dispatch({
 				type: CART_ITEM_ADD_SUCCESS,
-				payload: newCartProduct,
+				payload: new_cart_item,
 			});
 		}
 	} catch (error) {

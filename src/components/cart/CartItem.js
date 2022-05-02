@@ -15,8 +15,9 @@ export const CartItem = ({ item }) => {
 		dispatch(deleteItemFromCart(cartItemId));
 	};
 
-	const handleCartQty = (itemId, qty) => {
-		dispatch(updateCartQty(itemId, qty));
+	const handleQtyChange = (e, id, stateQty) => {
+		setStateQty(Number(e.target.value));
+		dispatch(updateCartQty(id, stateQty));
 	};
 	return (
 		<>
@@ -46,9 +47,7 @@ export const CartItem = ({ item }) => {
 						min="1"
 						value={stateQty}
 						onChange={(e) => {
-							setStateQty(Number(e.target.value));
-							console.log(stateQty);
-							handleCartQty(item.id, stateQty);
+							handleQtyChange(e, item.id, stateQty);
 						}}
 					/>
 				</CartInfoStyle>
