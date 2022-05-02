@@ -4,17 +4,19 @@ import {
 	CartInfoStyle,
 } from "../../styles/CartScreen";
 import { useDispatch } from "react-redux";
+import { updateCartQty } from "../../actions/cartActions";
+import { useState } from "react";
 
 export const CartItem = ({ item }) => {
 	const dispatch = useDispatch();
-
+	const [stateQty, setStateQty] = useState(item.qtyInCart);
 	// const handleCartDelete = (cartItemId) => {
 	// 	dispatch(deleteItemFromCart(cartItemId));
 	// };
 
-	// const handleCartQty = (itemId, qty) => {
-	// 	dispatch(updateCartQty(itemId, qty));
-	// };
+	const handleCartQty = (itemId, qty) => {
+		dispatch(updateCartQty(itemId, qty));
+	};
 	return (
 		<>
 			<CartItemStyle>
@@ -41,11 +43,12 @@ export const CartItem = ({ item }) => {
 					<input
 						type="number"
 						min="1"
-						// value={stateQty}
-						// onChange={(e) => {
-						// 	setStateQty((prev) => Number(e.target.value));
-						// handleCartQty(item.id, stateQty);
-						// }}
+						value={stateQty}
+						onChange={(e) => {
+							setStateQty(Number(e.target.value));
+							console.log(stateQty);
+							handleCartQty(item.id, stateQty);
+						}}
 					/>
 				</CartInfoStyle>
 
