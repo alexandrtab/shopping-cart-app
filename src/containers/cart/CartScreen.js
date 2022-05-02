@@ -15,16 +15,26 @@ export const CartScreen = () => {
 	useEffect(() => {
 		dispatch(listCartItems());
 	}, [dispatch]);
-	return (
-		<div>
-			<h1>Cart</h1>
-			<Bounce left>
-				<CartContainerStyle>
-					{cartItems.map((item) => (
-						<CartItem item={item} key={item.id} />
-					))}
-				</CartContainerStyle>
-			</Bounce>
-		</div>
-	);
+	const handleRenderCarts = (...key) => {
+		switch (key) {
+			case loading:
+				return <h1>Loading...</h1>;
+			case error:
+				return <div>{error}</div>;
+			default:
+				return (
+					<div>
+						<h1>Cart</h1>
+						<Bounce left>
+							<CartContainerStyle>
+								{cartItems.map((item) => (
+									<CartItem item={item} key={item.id} />
+								))}
+							</CartContainerStyle>
+						</Bounce>
+					</div>
+				);
+		}
+	};
+	return <> {handleRenderCarts(loading, error, cartItems)}</>;
 };

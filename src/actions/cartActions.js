@@ -24,7 +24,6 @@ import {
 } from "firebase/firestore";
 
 export const listCartItems = () => async (dispatch) => {
-	let cartData = [];
 	async function getCartItems(db) {
 		const cartCol = collection(db, "cartItems");
 		const cartSnapshot = await getDocs(cartCol);
@@ -34,7 +33,7 @@ export const listCartItems = () => async (dispatch) => {
 
 	try {
 		dispatch({ type: CART_ITEM_UPDATE_REQUEST });
-		cartData = await getCartItems(db);
+		const cartData = await getCartItems(db);
 		dispatch({ type: CART_ITEM_REMOVE_SUCCESS, payload: cartData });
 	} catch (error) {
 		dispatch({
