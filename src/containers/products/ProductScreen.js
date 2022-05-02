@@ -3,6 +3,7 @@ import { ProductItem } from "../../components/products/ProductItem";
 import { ProductContainerStyle } from "../../styles/ProductScreen";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../actions/productActions";
+import Fade from "react-reveal/Fade";
 
 export const ProductScreen = () => {
 	const dispatch = useDispatch();
@@ -10,17 +11,28 @@ export const ProductScreen = () => {
 	const { loading, error, products } = productsList;
 	useEffect(() => {
 		dispatch(listProducts());
-		console.log(productsList);
 	}, [dispatch]);
 
-	return (
-		<div>
-			<h1>Products</h1>
-			<ProductContainerStyle primary>
-				{products.map((item, index) => (
-					<ProductItem key={index} item={item} />
-				))}
-			</ProductContainerStyle>
-		</div>
-	);
+	const handleRenderProducts = (...key) => {
+		switch (key) {
+			case loading:
+				return <h1>Loading...</h1>;
+			case error:
+				return <div>{error}</div>;
+			default:
+				return (
+					<>
+						<h1>Products</h1>
+						<ProductContainerStyle primary>
+							{products.map((item) => (
+								<Fade bottom>
+									<ProductItem item={item} />
+								</Fade>
+							))}
+						</ProductContainerStyle>
+					</>
+				);
+		}
+	};
+	return <> {handleRenderProducts(loading, error, products)}</>;
 };

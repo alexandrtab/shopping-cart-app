@@ -5,7 +5,7 @@ export const ProductContainerStyle = styled.div`
 	margin: 2% auto;
 	height: 100%;
 	border-radius: 7px;
-	background-color: ${(props) => (props.primary ? "#f2f2f2" : "#343a40")};
+	background-color: ${(props) => (props.primary ? "#fcfcfc" : "#343a40")};
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 `;
@@ -16,9 +16,11 @@ export const ProductItemStyle = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	width: 300px;
+	height: 490px;
 	background-color: ${(props) => (props.primary ? "white" : "#919aa1")};
 	margin: 2rem;
 	padding: 1rem;
+	box-shadow: 0px 0px 11px 5px rgba(0, 0, 0, 0.09);
 `;
 
 export const PageHeading = styled.h1`
@@ -55,7 +57,7 @@ export const CartAddButton = styled.button`
 export const NavBarStyle = styled.nav`
 	width: 80%;
 	background-color: black;
-	height: 150px;
+	height: 80px;
 	margin: 0 auto;
 	display: flex;
 	justify-content: space-evenly;
@@ -67,23 +69,18 @@ export const NavBarStyle = styled.nav`
 		text-align: center;
 		display: flex;
 		list-style: none;
-		flex-direction: column;
 		justify-content: space-evenly;
 		align-items: center;
 	}
 	li {
-		margin: 0 auto;
+		margin: 0 20px;
 		a {
 			font-size: 2rem;
 			text-decoration: none;
 			transition: all 1s;
 			color: white;
 			&:hover {
-				background-color: white;
-				border: 1px solid black;
-				color: black;
-				padding: 0.4rem;
-				border-radius: 10px;
+				border-bottom: 1px solid white;
 			}
 		}
 	}

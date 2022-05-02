@@ -14,9 +14,7 @@ export const listProducts = () => (dispatch) => {
 		products.forEach((product) => {
 			productsData.push(product);
 		});
-		console.log(productsData);
 		dispatch({ type: PRODUCT_LIST_SUCCESS, payload: productsData });
-		console.log(productsData);
 	} catch (error) {
 		dispatch({
 			type: PRODUCT_LIST_FAIL,
