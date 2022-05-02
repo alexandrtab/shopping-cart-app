@@ -1,6 +1,12 @@
 import { ProductItemStyle, CartAddButton } from "../../styles/ProductScreen";
+import { useDispatch } from "react-redux";
+import { addProductToCart } from "../../actions/cartActions";
 
 export const ProductItem = ({ item }) => {
+	const dispatch = useDispatch();
+	const addToCartHandler = () => {
+		dispatch(addProductToCart(item));
+	};
 	return (
 		<ProductItemStyle primary>
 			<img style={{ width: "100px" }} src={item.image} alt={item.title} />
@@ -17,7 +23,9 @@ export const ProductItem = ({ item }) => {
 			</p>
 			<p>{item.qtyInStock}</p>
 			<p style={{ fontSize: "10px", color: "gray" }}>{item.description}</p>
-			<CartAddButton primary>Add To Cart</CartAddButton>
+			<CartAddButton onClick={addToCartHandler} primary>
+				Add To Cart
+			</CartAddButton>
 		</ProductItemStyle>
 	);
 };

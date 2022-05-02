@@ -22,6 +22,7 @@ import {
 	deleteDoc,
 	updateDoc,
 } from "firebase/firestore";
+import nextId from "react-id-generator";
 
 export const listCartItems = () => async (dispatch) => {
 	async function getCartItems(db) {
@@ -38,6 +39,52 @@ export const listCartItems = () => async (dispatch) => {
 	} catch (error) {
 		dispatch({
 			type: CART_ITEM_UPDATE_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
+};
+export const addProductToCart = (new_cart_item) => async (dispatch) => {
+	const newCartProduct = {};
+	const newItemId = nextId();
+	try {
+		dispatch({
+			type: CART_ITEM_ADD_REQUEST,
+		});
+
+		const cartItemRef = doc(db, "cartItems", newItemId);
+
+		const docSnap = await getDoc(cartItemRef);
+
+		if (docSnap.exists()) {
+			const existItem = docSnap.data();
+			alert(existItem.title + " already in cart");
+			dispatch({
+				type: CART_ITEM_ADD_SUCCESS,
+				payload: existItem,
+			});
+		} else {
+			console.log("No such document!");
+			await setDoc(doc(db, "cartItems", newItemId), {
+				id: newItemId,
+				title: new_cart_item.title,
+				price: new_cart_item.price,
+				image: new_cart_item.image,
+				qtyInCart: 1,
+			});
+			alert(new_cart_item.title + " successfully added");
+
+			dispatch({
+				type: CART_ITEM_ADD_SUCCESS,
+				payload: newCartProduct,
+			});
+		}
+	} catch (error) {
+		alert("Failed To Add " + new_cart_item.title + error);
+		dispatch({
+			type: CART_ITEM_ADD_FAIL,
 			payload:
 				error.response && error.response.data.message
 					? error.response.data.message
