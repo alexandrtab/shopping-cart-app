@@ -11,27 +11,28 @@ export const ProductScreen = () => {
 	const { loading, error, products } = productsList;
 	useEffect(() => {
 		dispatch(listProducts());
-		console.log(productsList);
 	}, [dispatch]);
 
-	return (
-		<>
-			{loading ? (
-				<h1>Loading...</h1>
-			) : error ? (
-				<div>{error}</div>
-			) : (
-				<>
-					<h1>Products</h1>
-					<ProductContainerStyle primary>
-						{products.map((item) => (
-							<Fade bottom>
-								<ProductItem item={item} />
-							</Fade>
-						))}
-					</ProductContainerStyle>
-				</>
-			)}
-		</>
-	);
+	const handleRenderProducts = (...key) => {
+		switch (key) {
+			case loading:
+				return <h1>Loading...</h1>;
+			case error:
+				return <div>{error}</div>;
+			default:
+				return (
+					<>
+						<h1>Products</h1>
+						<ProductContainerStyle primary>
+							{products.map((item) => (
+								<Fade bottom>
+									<ProductItem item={item} />
+								</Fade>
+							))}
+						</ProductContainerStyle>
+					</>
+				);
+		}
+	};
+	return <> {handleRenderProducts(loading, error, products)}</>;
 };
