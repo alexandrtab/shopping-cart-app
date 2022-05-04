@@ -19,7 +19,7 @@ import {
 	deleteDoc,
 	updateDoc,
 } from "firebase/firestore";
-import nextId from "react-id-generator";
+import { useId } from "react";
 
 export const listCartItems = () => async (dispatch) => {
 	async function getCartItems(db) {
@@ -43,9 +43,9 @@ export const listCartItems = () => async (dispatch) => {
 		});
 	}
 };
-export const addProductToCart = (new_cart_item) => async (dispatch) => {
+export const addProductToCart = (newCartItem) => async (dispatch) => {
 	const newCartProduct = {};
-	const newItemId = nextId();
+	const newItemId = useId();
 	try {
 		dispatch({
 			type: CART_ITEM_ADD_REQUEST,
@@ -67,20 +67,20 @@ export const addProductToCart = (new_cart_item) => async (dispatch) => {
 			console.log("No such document!");
 			await setDoc(doc(db, "cartItems", newItemId), {
 				id: newItemId,
-				title: new_cart_item.title,
-				price: new_cart_item.price,
-				image: new_cart_item.image,
+				title: newCartItem.title,
+				price: newCartItem.price,
+				image: newCartItem.image,
 				qtyInCart: 1,
 			});
-			alert(new_cart_item.title + " successfully added");
+			alert(newCartItem.title + " successfully added");
 
 			dispatch({
 				type: CART_ITEM_ADD_SUCCESS,
-				payload: new_cart_item,
+				payload: newCartItem,
 			});
 		}
 	} catch (error) {
-		alert("Failed To Add " + new_cart_item.title + error);
+		alert("Failed To Add " + newCartItem.title + error);
 		dispatch({
 			type: CART_ITEM_ADD_FAIL,
 			payload:
@@ -90,7 +90,7 @@ export const addProductToCart = (new_cart_item) => async (dispatch) => {
 		});
 	}
 };
-export const updateCartQty = (cart_item_id, qty) => async (dispatch) => {
+export const updateCartCounter = (cart_item_id, qty) => async (dispatch) => {
 	try {
 		dispatch({
 			type: CART_ITEM_UPDATE_REQUEST,
