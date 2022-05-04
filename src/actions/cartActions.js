@@ -19,7 +19,7 @@ import {
 	deleteDoc,
 	updateDoc,
 } from "firebase/firestore";
-import { useId } from "react";
+import nextId from "react-id-generator";
 
 export const listCartItems = () => async (dispatch) => {
 	async function getCartItems(db) {
@@ -45,7 +45,7 @@ export const listCartItems = () => async (dispatch) => {
 };
 export const addProductToCart = (newCartItem) => async (dispatch) => {
 	const newCartProduct = {};
-	const newItemId = useId();
+	const newItemId = nextId();
 	try {
 		dispatch({
 			type: CART_ITEM_ADD_REQUEST,

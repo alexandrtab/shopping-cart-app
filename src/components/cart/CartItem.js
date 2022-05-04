@@ -18,9 +18,9 @@ export const CartItem = ({ item }) => {
 		dispatch(deleteItemFromCart(item.id));
 	};
 
-	const handleQtyChange = (e, id, stateQty) => {
+	const handleQtyChange = (e) => {
 		setStateQty(Number(e.target.value));
-		dispatch(updateCartCounter(id, stateQty));
+		dispatch(updateCartCounter(item.id, stateQty));
 	};
 	return (
 		<>
@@ -49,9 +49,7 @@ export const CartItem = ({ item }) => {
 						type="number"
 						min="1"
 						value={stateQty}
-						onChange={(e) => {
-							handleQtyChange(e, item.id, stateQty);
-						}}
+						onChange={ handleQtyChange }
 					/>
 				</CartInfoStyle>
 
