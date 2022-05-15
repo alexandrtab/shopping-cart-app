@@ -16,7 +16,14 @@ function App() {
 				<Navbar />
 				<Routes>
 					<Route path="/" element={<Home />} />
-					<Route path="/account" element={<Account />} />
+					<Route
+						path="/account"
+						element={
+							<Protected>
+								<Account />
+							</Protected>
+						}
+					/>
 					<Route path="/SignUp" element={<SignUp />} />
 					<Route path="/products" element={<ProductScreen />} />
 					<Route path="/cart" element={<CartScreen />} />

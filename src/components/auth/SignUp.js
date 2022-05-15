@@ -26,7 +26,7 @@ export const SignUp = () => {
 		<div
 			style={{ display: "flex", alignItems: "center", flexDirection: "column" }}
 		>
-			<h1>SignUp</h1>
+			<h1>Sign up 👇</h1>
 			<GoogleButton onClick={handleGoogleSignIn} />
 		</div>
 	);
