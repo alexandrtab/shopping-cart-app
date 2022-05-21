@@ -7,7 +7,7 @@ import { Account } from "./components/auth/Account";
 import { Home } from "./components/auth/Home";
 import { SignUp } from "./components/auth/SignUp";
 import { AuthContextProvider } from "./context/AuthContext";
-import Protected from "./components/auth/Protected";
+import { Protected } from "./components/auth/Protected";
 
 function App() {
 	return (
