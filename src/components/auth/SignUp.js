@@ -7,13 +7,10 @@ export const SignUp = () => {
 	const { googleSignIn, user } = UserAuth();
 	const navigate = useNavigate();
 
-	const handleGoogleSignIn = async () => {
-		try {
-			await googleSignIn();
+	const handleGoogleSignIn = () => {
+		googleSignIn().then(() => {
 			navigate("/account");
-		} catch (error) {
-			alert(error.message);
-		}
+		});
 	};
 
 	useEffect(() => {
